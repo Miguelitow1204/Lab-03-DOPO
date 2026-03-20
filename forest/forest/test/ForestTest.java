@@ -7,7 +7,7 @@ import domain.Tree;
 import java.awt.Color;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
+import domain.Squirrel;
 /**
  * The test class ForestTest.
  *
@@ -15,6 +15,7 @@ import org.junit.Test;
  */
 public class ForestTest
 {
+    //Pruebas método ticTac() de Forest
     @Test
     public void testTicTacChangeColor(){
         Forest forest = new Forest();
@@ -32,5 +33,25 @@ public class ForestTest
         forest.ticTac();
         assertEquals(Color.GREEN, beard.getColor());
         assertEquals(Color.GREEN, soul.getColor());
+    }
+    
+    //Pruebas Squirrel
+    @Test
+    public void testSquirrelInitialColor(){
+        Forest forest = new Forest();
+        Squirrel alvin = new Squirrel(forest, 5, 5);
+        //deberia crear una nueva squirrel de 0 años, café
+        assertEquals(new Color(139, 69, 19), alvin.getColor());
+    }
+    
+    @Test
+    public void testSquirrelDiesAfter10Years(){
+        Forest forest = new Forest();
+        Squirrel alvin = new Squirrel(forest, 5, 5);
+        //deberia morir despues de 10ticTac
+        for(int i = 0; i < 10; i++){
+            forest.ticTac();
+        }
+        assertNull(forest.getThing(5, 5));
     }
 }

@@ -31,6 +31,8 @@ public class Forest{
     public void someThings(){
         Tree beard = new Tree(this, 10, 10);
         Tree soul = new Tree(this, 15, 15);
+        Squirrel scrat = new Squirrel(this, 11, 13);
+        Squirrel sandy = new Squirrel(this, 13, 13);
 
     }
     
@@ -62,6 +64,19 @@ public class Forest{
      * Iterates over all cells, calling ticTac() on each non-null element found.
      */
     public void ticTac(){
+        for(int r = 0;r < SIZE; r++){
+            for(int c = 0; c < SIZE; c++){
+                if(places[r][c] instanceof Squirrel){
+                    ((Squirrel)places[r][c]).acted = false;
+                }
+            }
+        }
+        Thing[][] copy = new Thing[SIZE][SIZE];
+        for(int r = 0; r < SIZE; r++){
+            for(int c = 0; c < SIZE; c++){
+                copy[r][c] = places[r][c];
+            }
+        }
         for(int r = 0; r < SIZE; r++){
             for(int c = 0; c < SIZE; c++){
                 if(places[r][c] != null){
