@@ -85,5 +85,12 @@ public class Tree extends LivingThing implements Thing{
         forest.setThing(row, column,null);
     }
   
-        
+    //Ciclo 4
+    /**
+     * Returns the tictac counter
+     * @return tictac
+     */
+    public int getTicTac(){
+        return tictac;
+    }
 }
