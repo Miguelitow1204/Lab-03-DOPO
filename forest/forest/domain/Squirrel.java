@@ -61,7 +61,6 @@ public class Squirrel extends LivingThing implements Thing{
         if(acted) return;
         acted = true;
         years++;
-        System.out.println("Squirrel at (" + row + "," + column + ") years: " + years);
         if(years >= 10){
             die();
             return;

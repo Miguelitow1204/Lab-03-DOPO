@@ -1,6 +1,4 @@
 package test;
-
-  
 import domain.*;
 import domain.Forest;
 import domain.Tree;
@@ -8,6 +6,8 @@ import java.awt.Color;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import domain.Squirrel;
+import domain.Shadow;
+import domain.CherryTree;
 /**
  * The test class ForestTest.
  *
@@ -53,5 +53,51 @@ public class ForestTest
             forest.ticTac();
         }
         assertNull(forest.getThing(5, 5));
+    }
+    
+    //Pruebas Shadow
+    @Test
+    public void testShadowColor(){
+        Forest forest = new Forest();
+        Shadow shadowTest = new Shadow(forest, 5, 5);
+        assertEquals(Color.BLACK, shadowTest.getColor());
+    }
+    
+    @Test
+    public void thestShadowMovesToNorth(){
+        Forest forest = new Forest();
+        Shadow shadowTest = new Shadow(forest, 5, 5);
+        forest.ticTac();
+        assertNotNull(forest.getThing(4, 5));
+        assertNull(forest.getThing(5,5));
+    }
+    
+    //Ciclo 4 pruebas cherryTree
+    @Test
+    public void testCherryTreeInitialColor(){
+        Forest forest = new Forest();
+        CherryTree cherry = new CherryTree(forest, 5, 5);
+        assertEquals(Color.GREEN, cherry.getColor());
+    }
+    
+    @Test
+    public void testCherryTreeBlooms(){
+        Forest forest = new Forest();
+        CherryTree cherry = new CherryTree(forest, 3, 3);
+        //After 4 tic-tacs it should bloom to pink
+        for(int i = 0; i < 4; i++){
+            forest.ticTac();
+        }
+        assertEquals(new Color(205, 105, 180), cherry.getColor());
+    }
+    
+    @Test
+    public void testCherryTreeReturnsToGreen(){
+        Forest forest = new Forest();
+        CherryTree cherry = new CherryTree(forest, 3, 3);
+        for(int i = 0; i < 8; i++){
+            forest.ticTac();
+        }
+        assertEquals(Color.GREEN, cherry.getColor());
     }
 }
