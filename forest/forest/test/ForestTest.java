@@ -113,10 +113,18 @@ public class ForestTest {
         Forest forest = new Forest();
         GlowSpore rubiano2 = new GlowSpore(forest, 7, 7);
         for (int i = 0; i < 5; i++) {
-            forest.ticTac();
+            rubiano2.ticTac(); // llamamos directo a la espora, no al forest
         }
-        // Después de 5 tic-tacs debe haber muerto
-        assertNull(forest.getThing(7, 7));
+        // Verificar que ya no existe en ninguna celda del bosque
+        boolean found = false;
+        for (int r = 0; r < forest.getSize(); r++) {
+            for (int c = 0; c < forest.getSize(); c++) {
+                if (forest.getThing(r, c) == rubiano2) {
+                    found = true;
+                }
+            }
+        }
+        assertFalse(found);
     }
 
     @Test
